@@ -1,7 +1,9 @@
+using CafeManagement.Application;
 using CafeManagement.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddPersistenceServices(builder.Configuration);
+builder.Services.AddApplicationServices();
 
 // Add services to the container.
 

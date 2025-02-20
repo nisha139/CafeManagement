@@ -18,4 +18,8 @@
     <ProjectReference Include="..\CafeManagement.Domain\CafeManagement.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\CafeMenu\Queries\" />
+  </ItemGroup>
+
 </Project>
