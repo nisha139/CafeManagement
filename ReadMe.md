@@ -28,6 +28,7 @@ Add below packages for Application layer
 3.   MediatR
 4.   Microsoft.EntityFrameworkCore
 5.   Microsoft.EntityFrameworkCore.Abstractions
+6.   Ardalis.Specification
 
 In Domain Layer there is no any project reference and packages because it always Independent 
 
@@ -59,6 +60,8 @@ Add below packages in Persistence layer
 2.   Microsoft.EntityFrameworkCore.Design
 3.	 Microsoft.EntityFrameworkCore.SqlServer
 4.   Microsoft.EntityFrameworkCore.Tools
+5.   Ardalis.Specification.EntityFrameworkCore
+6.   Ardalis.Specification
 
 In Api.csproject file  InvariantGlobalization false /InvariantGlobalization change true to false before migration
 
@@ -68,7 +71,15 @@ Add-Migration InitialCreate -Project CafeManagement.Persistence -StartupProject 
 
 dotnet ef database update --project CafeManagement.Persistence --startup-project CafeManagement.API
 
+for search GetAllCafe menu search formate:
 
-
+{
+  "paginationFilter": {
+    "pageNumber": 1,
+    "pageSize": 20,
+    "orderBy":
+      []
+  }
+}
 
 

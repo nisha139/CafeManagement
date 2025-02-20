@@ -1,10 +1,15 @@
-﻿using CafeManagement.Application.Features.CafeMenu.Command.CreateCafeMenu;
+﻿using CafeManagement.Application.Contracts.Responses;
+using CafeManagement.Application.Features.CafeMenu.Command.CreateCafeMenu;
 using CafeManagement.Application.Features.CafeMenu.Command.DeleteCafeMenu;
 using CafeManagement.Application.Features.CafeMenu.Command.UpdateCafeMenu;
 using CafeManagement.Application.Features.CafeMenu.Dto;
+using CafeManagement.Application.Features.CafeMenu.Queries.GetAllCafeMenu;
+using CafeManagement.Application.Features.CafeMenu.Queries.GetAllCafeMenusQuery;
+using CafeManagement.Application.Features.CafeMenu.Queries.GetCafeMenuByIdQuery;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace CafeManagement.API.Controllers
 {
@@ -17,6 +22,26 @@ namespace CafeManagement.API.Controllers
         public CafeMenuController(IMediator mediator)
         {
             _mediator = mediator;
+        }
+
+        [HttpGet("GetAll")]
+        public async Task<IActionResult> GetAllCafeMenus()
+        {
+            var response = await _mediator.Send(new GetAllCafeMenusQueryRequest());
+            return StatusCode(response.StatusCode, response);
+        }
+
+        [HttpGet("GetById/{id}")]
+        public async Task<IActionResult> GetCafeMenuById(Guid id)
+        {
+            var response = await _mediator.Send(new GetCafeMenuByIdQueryRequest(id));
+            return StatusCode(response.StatusCode, response);
+        }
+
+        [HttpPost("search")]
+        public async Task<IPagedDataResponse<CafeMenuDto>> SearchAsync(GetAllCafeMenuQueryRequest request)
+        {
+            return await _mediator.Send(request);
         }
 
         [HttpPost]
