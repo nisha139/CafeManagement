@@ -1,4 +1,4 @@
-﻿using CafeManagement.Application.Persistence.Base;
+﻿using CafeManagement.Application.Persistence.Repositories.Base;
 using CafeManagement.Domain.Common;
 using Microsoft.EntityFrameworkCore;
 using System;

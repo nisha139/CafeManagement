@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CafeManagement.Application.Persistence.Base;
+namespace CafeManagement.Application.Persistence.Repositories.Base;
 public interface IQueryRepository<T> where T : BaseEntity, new()
 {
     Task<int> CountAsync(Expression<Func<T, bool>> predicate);
