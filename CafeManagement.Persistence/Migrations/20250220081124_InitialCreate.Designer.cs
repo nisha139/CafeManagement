@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CafeManagement.Persistence.Migrations
 {
     [DbContext(typeof(CafeDbContext))]
-    [Migration("20250220055547_InitialCreate")]
+    [Migration("20250220081124_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -27,11 +27,10 @@ namespace CafeManagement.Persistence.Migrations
 
             modelBuilder.Entity("CafeManagement.Domain.Entities.CafeMenu", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier")
+                        .HasDefaultValueSql("NEWID()");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)")
@@ -80,11 +79,9 @@ namespace CafeManagement.Persistence.Migrations
 
             modelBuilder.Entity("CafeManagement.Domain.Entities.Order", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)")

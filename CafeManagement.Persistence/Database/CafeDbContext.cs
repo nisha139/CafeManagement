@@ -12,11 +12,14 @@ public class CafeDbContext : DbContext
     {
         modelBuilder.Entity<CafeMenu>()
             .Property(c => c.Price)
-            .HasPrecision(18, 2); 
+            .HasPrecision(18, 2);
 
         modelBuilder.Entity<Order>()
             .Property(o => o.TotalAmount)
             .HasPrecision(18, 2);
+        modelBuilder.Entity<CafeMenu>()
+        .Property(c => c.Id)
+        .HasDefaultValueSql("NEWID()");
     }
 }
 
