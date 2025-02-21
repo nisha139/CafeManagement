@@ -41,6 +41,7 @@ Add below packages for Identity Layer
 2.   Microsoft.AspNetCore.Identity.EntityFrameworkCore
 3.   Microsoft.EntityFrameworkCore.SqlServer
 4.   Microsoft.Extensions.Identity.Core
+5.   Microsoft.AspNetCore.Authentication.JwtBearer
 
 In Infrastruture layer add below project reference 
 1.   CafeManagement.Application
@@ -70,6 +71,10 @@ Go to Tool-> Nuget packager manager-> package manager console-> select persisten
 Add-Migration InitialCreate -Project CafeManagement.Persistence -StartupProject CafeManagement.API
 
 dotnet ef database update --project CafeManagement.Persistence --startup-project CafeManagement.API
+
+for migration in Identity layer 
+Add-Migration InitIdentity -Context CafeManagementIdentityDbContext
+Update-Database -Context CafeManagementIdentityDbContext
 
 for search GetAllCafe menu search formate:
 
