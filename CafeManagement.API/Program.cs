@@ -1,9 +1,10 @@
 using CafeManagement.Application;
 using CafeManagement.Persistence;
-
+using CafeManagement.Identity;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddPersistenceServices(builder.Configuration);
 builder.Services.AddApplicationServices();
+builder.Services.AddIdentityServices(builder.Configuration);
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAngularApp",
